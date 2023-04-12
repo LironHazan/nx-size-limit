@@ -28,8 +28,8 @@ export default async function (tree: Tree, options: AddGeneratorSchema) {
   const projectConfigPath = `${normalizedOptions.projectRoot}/project.json`;
 
   await updateJson(tree, projectConfigPath, (json) => {
-    if (!json['size-limit']) {
-      json['size-limit'] = {
+    if (!json.targets['size-limit']) {
+      json.targets['size-limit'] = {
         "executor": "nx-size-limit:size-limit"
       };
     }
