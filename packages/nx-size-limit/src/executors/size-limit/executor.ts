@@ -8,7 +8,7 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for SizeLimit', options);
   const cwd = context.workspace.projects[context.projectName].root;
-  const cmd = ['size-limit'].concat(argsFromOptions(options)).join(' ');
+  const cmd = ['npx -y size-limit'].concat(argsFromOptions(options)).join(' ');
   console.log(cmd);
   execSync(cmd, { stdio: 'inherit', cwd });
   return {
