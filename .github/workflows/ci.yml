@@ -81,6 +81,6 @@ jobs:
             path: node_modules
             key: ${{ runner.os }}-build-cache-node-modules${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
-        - run: nx affected --target=test --all
+        - run: npx nx affected --target=test --all
 
 
