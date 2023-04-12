@@ -2,13 +2,21 @@
 
 An easy way to plug [size-limit](https://github.com/ai/size-limit) into your nx powered projects.
 
-Size Limit is a performance budget tool for JavaScript. It checks every commit on CI, calculates the real cost of your JS for end-users and throws an error if the cost exceeds the limit.
+> Size Limit is a performance budget tool for JavaScript. It checks every commit on CI, calculates the real cost of your JS for end-users and throws an error if the cost exceeds the limit.
 
-## install
+### install plugin
 
 ```
 npm install -D nx-size-limit
 ```
+
+### Install size-limit presets
+
+```
+npm install -D @size-limit/preset-app
+```
+
+** [Read Usage section](https://github.com/ai/size-limit#usage)
 
 ## Usage
 
