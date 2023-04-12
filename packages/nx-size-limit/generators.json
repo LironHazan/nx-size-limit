@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-size-limit",
+  "version": "0.0.1",
+  "generators": {
+    "nx-size-limit": {
+      "factory": "./src/generators/nx-size-limit/generator",
+      "schema": "./src/generators/nx-size-limit/schema.json",
+      "description": "nx-size-limit generator"
+    }
+  }
+}
