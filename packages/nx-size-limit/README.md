@@ -37,3 +37,12 @@ Read more on the configuration options [here](https://github.com/ai/size-limit#l
 ```
 nx run your-project:size-limit
 ```
+
+## Credits
+
+This plugin wouldn't be possible without the great teams behind these projects:
+
+- [size-limit](https://github.com/ai/size-limit) - Calculate the real cost to run your JS app or lib to keep good performance. Show error in pull request if the cost exceeds the limit.
+- [Nrwl](https://github.com/nrwl) - The team behind [Nx](https://github.com/nrwl/nx)
+
+Please show them your support! ❤️
