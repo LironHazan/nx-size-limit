@@ -13,7 +13,7 @@ npm install -D nx-size-limit
 ### Install size-limit presets
 
 ```
-npm install -D @size-limit/preset-app
+npm install -D size-limit @size-limit/preset-app
 ```
 
 ** [Read Usage section](https://github.com/ai/size-limit#usage)
