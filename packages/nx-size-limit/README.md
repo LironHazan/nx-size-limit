@@ -2,9 +2,8 @@
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
 
-Run `nx build nx-size-limit` to build the library.
+
 
 ## Running unit tests
 

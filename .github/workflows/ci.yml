@@ -1,0 +1,86 @@
+name: CI
+on: [ pull_request ]
+jobs:
+  planning-job:
+    name: Handle planning job setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.10.0
+      - name: Cache node modules
+        id: cache-nodemodules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline
+
+  lint-affected:
+    name: Lint affected
+    needs: planning-job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.10.0
+      - uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-cache-node-modules-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-cache-node-modules-${{ env.cache-name }}-
+            ${{ runner.os }}-build-cache-node-modules-
+            ${{ runner.os }}-
+      - run: npx nx affected --target=lint --base=origin/main
+
+  build-affected:
+    name: Verify affected apps building
+    needs: planning-job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+      - uses: actions/cache@v3
+        with:
+          node-version: 16.10.0
+          path: node_modules
+          key: ${{ runner.os }}-build-cache-node-modules${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+      - run: npx nx affected --target=build --base=origin/main
+
+  test-affected:
+      name: Run unit tests on affetced projects
+      needs: planning-job
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - uses: actions/setup-node@v3
+        - uses: actions/cache@v3
+          with:
+            node-version: 16.10.0
+            path: node_modules
+            key: ${{ runner.os }}-build-cache-node-modules${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+        - run: nx affected --target=test --all
+
+

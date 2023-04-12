@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "cli": "nx",
+  "title": "SizeLimit executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "limit": {
+      "type": "string",
+      "description": "Set size or running time limit for files"
+      },
+    "json": {
+      "json": "string",
+      "description": "Show results in JSON format"
+      }
+  },
+  "required": []
+}
+
+

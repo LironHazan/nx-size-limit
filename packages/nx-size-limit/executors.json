@@ -1,10 +1,10 @@
 {
   "$schema": "http://json-schema.org/schema",
   "executors": {
-    "build": {
-      "implementation": "./src/executors/build/executor",
-      "schema": "./src/executors/build/schema.json",
-      "description": "build executor"
+    "size-limit": {
+      "implementation": "./src/executors/size-limit/executor",
+      "schema": "./src/executors/size-limit/schema.json",
+      "description": "size-limit executor"
     }
   }
 }

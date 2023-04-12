@@ -1,5 +1,5 @@
 {
-  "name": "@nx-size-limit/nx-size-limit",
+  "name": "nx-size-limit",
   "version": "0.0.1",
   "main": "src/index.js",
   "generators": "./generators.json",
