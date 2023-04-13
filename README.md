@@ -1,6 +1,25 @@
-# Nx SizeLimit Plugin
 
-An easy way to plug [size-limit](https://github.com/ai/size-limit) into your nx powered projects.
+<div align="center">
+<h1>  Nx SizeLimit Plugin </h1>
+An easy way to plug 
+<a href="https://github.com/ai/size-limit">size-limit</a>
+into your nx powered projects.
+  <p dir="auto">
+    <a href="https://www.npmjs.org/package/nx-size-limit">
+      <img src="https://img.shields.io/npm/v/nx-size-limit?style=flat" alt="Nx Ngrok package on NPM" />
+    </a>
+    <a href="https://www.npmjs.org/package/nx-size-limit">
+      <img src="https://img.shields.io/npm/dm/nx-size-limit" alt="Nx Ngrok package downloads on NPM" aria-hidden="true" />
+    </a>
+
+[//]: # (    <a href="https://sonarcloud.io/summary/new_code?id=domjtalbot_nx-size-limit">)
+
+[//]: # (      <img src="https://sonarcloud.io/api/project_badges/measure?project=domjtalbot_nx-size-limit&metric=alert_status" alt="SonarCloud Quality Gate Status" aria-hidden="true" />)
+
+[//]: # (    </a>)
+  </p>
+
+</div>
 
 > Size Limit is a performance budget tool for JavaScript. It checks every commit on CI, calculates the real cost of your JS for end-users and throws an error if the cost exceeds the limit.
 

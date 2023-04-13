@@ -1,7 +1,21 @@
 {
   "name": "nx-size-limit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "src/index.js",
   "generators": "./generators.json",
-  "executors": "./executors.json"
+  "executors": "./executors.json",
+  "keywords": [
+    "CLI",
+    "Bundle size",
+    "size-limit",
+    "Nx"
+  ],
+  "bugs": {
+    "url": "git://github.com/LironHazan/nx-size-limit/issues"
+  },
+  "repository": {
+    "directory": "packages/nx-size-limit",
+    "type": "git",
+    "url": "git://github.com/LironHazan/nx-size-limit.git"
+  }
 }
