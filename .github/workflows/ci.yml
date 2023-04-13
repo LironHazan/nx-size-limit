@@ -66,15 +66,13 @@ jobs:
 
       - run: npx nx affected --target=build --base=origin/main
 
-      - name: Get list of affected apps
-        run: |
+      - run: |
          APPS=( $(ls -1d dist/packages/*/) )
          echo "APPS=$APPS" >> $GITHUB_ENV
 
-       - name: Run NX command per app
-         env:
+        env:
            APPS: ${{ env.APPS }}
-         run: |
+      - run: |
            for app in $APPS; do
              npx nx run $app:size-limit
            done
