@@ -65,8 +65,8 @@ The default config contains the relative path to your main bundle and the limite
 
 ```json
 [
-  { 
-    "path": ["../../dist/apps/your-project/main*.js"], 
+  {
+    "path": ["../../dist/apps/your-project/main*.js"],
     "limit": "300 kB"
   }
 ]
@@ -78,7 +78,7 @@ Additional executor will be added to the target project.json config:
 
 ```json
 "size-limit": {
-  "executor": "nx-size-limit:size-limit"
+"executor": "nx-size-limit:size-limit"
 }
 ```
 ### Run a limit check
@@ -87,22 +87,22 @@ nx run your-project:size-limit
 ```
 
 ### CI
-This is an initial suggestion, iterate over the distributed projects and run size-limit. 
+This is an initial suggestion, iterate over the distributed projects and run size-limit.
 
 ```yaml
 
-      - name: Get list of affected apps
-        run: |
-          APPS=( $(ls -1d dist/apps/*/) )
-          echo "APPS=$APPS" >> $GITHUB_ENV
+- name: Get list of affected apps
+  run: |
+    APPS=( $(ls -1d dist/apps/*/ | xargs -n 1 basename) )
+    echo "APPS=$APPS" >> $GITHUB_ENV
 
-      - name: Run NX command per app
-        env:
-          APPS: ${{ env.APPS }}
-        run: |
-          for app in $APPS; do
-            npx nx run $app:size-limit
-          done
+- name: Run NX command per app
+  env:
+    APPS: ${{ env.APPS }}
+  run: |
+    for app in $APPS; do
+      npx nx run $app:size-limit
+    done
 
 ```
 

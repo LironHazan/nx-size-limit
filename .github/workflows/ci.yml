@@ -67,7 +67,7 @@ jobs:
       - run: npx nx affected --target=build --base=origin/main
 
       - run: |
-         APPS=( $(ls -1d dist/packages/*/) )
+         APPS=( $(ls -1d dist/packages/*/ | xargs -n 1 basename) )
          echo "APPS=$APPS" >> $GITHUB_ENV
 
         env:

@@ -93,7 +93,7 @@ This is an initial suggestion, iterate over the distributed projects and run siz
 
       - name: Get list of affected apps
         run: |
-          APPS=( $(ls -1d dist/apps/*/) )
+          APPS=( $(ls -1d dist/apps/*/ | xargs -n 1 basename) )
           echo "APPS=$APPS" >> $GITHUB_ENV
 
       - name: Run NX command per app
