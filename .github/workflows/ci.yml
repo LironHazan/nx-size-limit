@@ -83,4 +83,21 @@ jobs:
 
         - run: npx nx affected --target=test --all
 
+  e2e:
+      name: Run e2e
+      needs: planning-job
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - uses: actions/setup-node@v3
+        - uses: actions/cache@v3
+          with:
+            node-version: 16.10.0
+            path: node_modules
+            key: ${{ runner.os }}-build-cache-node-modules${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+        - run: npx nx run nx-size-limit-e2e:e2e
+
 

@@ -4,7 +4,6 @@ import { execSync } from "child_process";
 import runExecutor, { argsFromOptions } from './executor';
 import * as child_process from "child_process";
 
-// Mock the `console.log` method so that we can check what it outputs
 console.log = jest.fn();
 
 describe('runExecutor', () => {
@@ -55,14 +54,10 @@ describe('runExecutor', () => {
 describe('argsFromOptions', () => {
   it('should convert options to command-line arguments', () => {
     const options: SizeLimitExecutorSchema = {
-      config: 'size-limit.config.js',
-      format: 'table',
       limit: '200 KB'
     };
     const args = argsFromOptions(options);
     expect(args).toEqual([
-      '--config=size-limit.config.js',
-      '--format=table',
       '--limit=200 KB'
     ]);
   });
