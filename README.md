@@ -33,6 +33,13 @@ A new `.size-limit.json` config will be generated in your project root folder:
 
 Read more on the configuration options [here](https://github.com/ai/size-limit#limits-config).
 
+Additional executor will be added to project.json config:
+
+```json
+    "size-limit": {
+      "executor": "nx-size-limit:size-limit"
+    }
+```
 ### Run a limit check
 ```
 nx run your-project:size-limit
