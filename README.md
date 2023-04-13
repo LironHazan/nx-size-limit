@@ -38,30 +38,72 @@ npm install -D size-limit @size-limit/preset-app
 ** [Read Usage section](https://github.com/ai/size-limit#usage)
 
 ## Usage
+** Requires a prior build of the target project.
 
 ### Configure size-limit
 
 ```
 nx g nx-size-limit:add --name=your-project
 ```
-A new `.size-limit.json` config will be generated in your project root folder:
 
-```json
-[{ "path": ["../../dist/apps/your-project/main*.js"], "limit": "300 kB" }]
+#### Options
+
+| Name          | Type                           | Required | Default | Description                                                           |
+|---------------|--------------------------------|:--------:|---------|-----------------------------------------------------------------------|
+| `name`        | `string`                       |     ✅       |         | The name of the target project.                                         |
+| `projectsDir` | `string`                       |    -     | `apps`  | The name of the project host directory. Typically apps/libs/packages. |
+| `bundler`     | `string`                       |    -     |`webpack`| The name of the bundler used when building the target project.       |
+
+
+```
+nx g nx-size-limit:add --name=your-lib --projectsDir=libs --bundler=vite
 ```
 
-Read more on the configuration options [here](https://github.com/ai/size-limit#limits-config).
+When running the `nx-size-limit:add` generator a new `.size-limit.json` config will be generated in your project root folder.
 
-Additional executor will be added to project.json config:
+The default config contains the relative path to your main bundle and the limited size of it.
 
 ```json
-    "size-limit": {
-      "executor": "nx-size-limit:size-limit"
-    }
+[
+  {
+    "path": ["../../dist/apps/your-project/main*.js"],
+    "limit": "300 kB"
+  }
+]
+```
+
+Read more on the size-limit CLI configuration options [here](https://github.com/ai/size-limit#limits-config).
+
+Additional executor will be added to the target project.json config:
+
+```json
+"size-limit": {
+"executor": "nx-size-limit:size-limit"
+}
 ```
 ### Run a limit check
 ```
 nx run your-project:size-limit
+```
+
+### CI
+This is an initial suggestion, iterate over the distributed projects and run size-limit.
+
+```yaml
+
+- name: Get list of affected apps
+  run: |
+    APPS=( $(ls -1d dist/apps/*/ | xargs -n 1 basename) )
+    echo "APPS=$APPS" >> $GITHUB_ENV
+
+- name: Run NX command per app
+  env:
+    APPS: ${{ env.APPS }}
+  run: |
+    for app in $APPS; do
+      npx nx run $app:size-limit
+    done
+
 ```
 
 ## Credits
