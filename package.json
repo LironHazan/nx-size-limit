@@ -2,7 +2,9 @@
   "name": "nx-size-limit",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:plugin": "npx nx run nx-size-limit:build"
+  },
   "private": true,
   "devDependencies": {
     "@nrwl/devkit": "15.9.2",
