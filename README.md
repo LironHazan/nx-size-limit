@@ -77,8 +77,10 @@ Read more on the size-limit CLI configuration options [here](https://github.com/
 Additional executor will be added to the target project.json config:
 
 ```json
-"size-limit": {
-"executor": "nx-size-limit:size-limit"
+{
+  "size-limit": {
+    "executor": "nx-size-limit:size-limit"
+  }
 }
 ```
 ### Run a limit check
