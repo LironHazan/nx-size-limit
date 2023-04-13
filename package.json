@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.4.11",
+    "ts-pattern": "^4.2.2",
     "tslib": "^2.3.0"
   }
 }
