@@ -34,7 +34,7 @@ export function normalizeOptions(tree: Tree, options: AddGeneratorSchema): Norma
 
 export function normalizePath(projectsDir: string, name: string, bundler: BundlerType): string {
   const mainJsPath = match([bundler])
-    .with(['vite'], () => `"../../dist/${projectsDir}/${name}/assets/index*.js"`)
+    .with(['vite'], () => `../../dist/${projectsDir}/${name}/assets/index*.js`)
     .with(['webpack'], () => `../../dist/${projectsDir}/${name}/main*.js`)
     .otherwise(() => `../../dist/${projectsDir}/${name}/main*.js`)
   return path.posix.join(...mainJsPath.split(path.sep));
