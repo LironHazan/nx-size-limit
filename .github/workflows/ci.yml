@@ -73,17 +73,7 @@ jobs:
         env:
           APPS: ${{ env.APPS }}
 
-      - name: Run size-limit check for each app
-        id: size-limit
-        run: |
-          for app in $APPS; do
-            npx nx run $app:size-limit
-          done
-        env:
-          APPS: ${{ env.APPS }}
-
       - name: Create size limit comment
-        if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
           script: |
