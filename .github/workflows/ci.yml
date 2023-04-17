@@ -83,7 +83,7 @@ jobs:
           APPS: ${{ env.APPS }}
 
       - name: Create size limit comment
-        if: steps.size-limit.outcome != 0
+        if: ${{ failure() }}
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
