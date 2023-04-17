@@ -3,6 +3,6 @@
     "path": [
       "../../dist/packages/nx-size-limit/src/generators/add/generator.js"
     ],
-    "limit": "300 kB"
+    "limit": "1 kB"
   }
 ]
