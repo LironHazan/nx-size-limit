@@ -89,7 +89,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // Create comment
-            const prNumber = github.context.payload.pull_request.number;
+            const prNumber = context.payload.pull_request.number;
             const comment = `
               The size limit check(s) failed.
             `;
