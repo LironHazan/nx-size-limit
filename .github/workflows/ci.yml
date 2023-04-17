@@ -86,6 +86,7 @@ jobs:
         if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
+          repository: ${{ github.repository }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // Create comment
