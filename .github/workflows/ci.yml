@@ -93,7 +93,7 @@ jobs:
             const comment = `
               The size limit check(s) failed.
             `;
-            await github.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: prNumber,
               body: comment
             });
