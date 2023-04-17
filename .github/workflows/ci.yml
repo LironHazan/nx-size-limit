@@ -77,53 +77,21 @@ jobs:
         id: size-limit
         run: |
           for app in $APPS; do
-            npx nx run $app:size-limit > ${app}_size_limit.json || (echo "::error::Size limit check failed for app $app" && echo "::warning::Size limit check failed for app $app. See the build logs for more details.")
+            npx nx run $app:size-limit
           done
         env:
           APPS: ${{ env.APPS }}
 
       - name: Create size limit comment
-        if: steps.size-limit.outcome == 'failure'
+        if: steps.size-limit.outcome != 0
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const failedApps = [];
-            let output = '';
-
-            // Collect failed apps and their size limit output
-            const lines = steps.size-limit.outputs.stdout.trim().split('\n');
-            let i = 0;
-            while (i < lines.length) {
-              const line = lines[i];
-              if (line.startsWith('::error::Size limit check failed for app')) {
-                const app = line.split(' ')[6];
-                failedApps.push(app);
-                i++;
-              } else {
-                i++;
-              }
-            }
-
-            // Read size limit output files for failed apps
-            for (const app of failedApps) {
-              try {
-                const sizeLimitOutput = require(`./${app}_size_limit.json`);
-                output += `
-                  ${app}:
-                  ${JSON.stringify(sizeLimitOutput, null, 2)}
-                `;
-              } catch (error) {
-                console.log(`Failed to read size limit output file for app ${app}: ${error}`);
-              }
-            }
-
             // Create comment
             const prNumber = context.payload.pull_request.number;
             const comment = `
-              The following size limit check(s) failed:
-
-              ${output}
+              The size limit check(s) failed.
             `;
             await github.issues.createComment({
               issue_number: prNumber,
