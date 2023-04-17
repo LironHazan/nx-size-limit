@@ -86,7 +86,6 @@ jobs:
         if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
-          repository: ${{ github.repository }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // Create comment
@@ -95,6 +94,8 @@ jobs:
               The size limit check(s) failed.
             `;
             await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               issue_number: prNumber,
               body: comment
             });
