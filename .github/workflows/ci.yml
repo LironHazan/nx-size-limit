@@ -69,15 +69,22 @@ jobs:
       - run: |
           APPS=( $(ls -1d dist/packages/*/ | xargs -n 1 basename) )
           echo "APPS=$APPS" >> $GITHUB_ENV
-
         env:
           APPS: ${{ env.APPS }}
-
+          
+      - name: Run size-limit check for each app
+        id: size-limit
+        run: |
+          for app in $APPS; do
+            npx nx run $app:size-limit
+          done
+          
       - name: Create size limit comment
+        if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
           script: |
-            // Create comment
+            console.log(context.payload.APPS)
             const prNumber = context.payload.pull_request.number;
             const comment = `
               The size limit check(s) failed.
