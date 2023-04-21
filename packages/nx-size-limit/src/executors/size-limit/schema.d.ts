@@ -1,3 +1,3 @@
 export interface SizeLimitExecutorSchema {
-  [k: string]: string;
+  why?: boolean
 }
