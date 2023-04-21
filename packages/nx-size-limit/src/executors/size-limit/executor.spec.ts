@@ -1,15 +1,13 @@
 import { SizeLimitExecutorSchema } from './schema';
 import { ExecutorContext } from "nx/src/config/misc-interfaces";
 import { execSync } from "child_process";
-import runExecutor, { argsFromOptions } from './executor';
+import runExecutor, {constructCommand} from './executor';
 import * as child_process from "child_process";
 
 console.log = jest.fn();
 
 describe('runExecutor', () => {
-  const options: SizeLimitExecutorSchema = {
-    config: 'size-limit.config.js'
-  };
+  const options: SizeLimitExecutorSchema = { why: false };
   const context: ExecutorContext & { projectName: string } = {
     cwd: "", isVerbose: false,
     root: '',
@@ -41,8 +39,7 @@ describe('runExecutor', () => {
     await runExecutor(options, context);
 
     expect(console.log).toHaveBeenCalledWith('Executor ran for SizeLimit', options);
-    expect(console.log).toHaveBeenCalledWith('size-limit --config=size-limit.config.js');
-    expect(execSync).toHaveBeenCalledWith('size-limit --config=size-limit.config.js', { stdio: 'inherit', cwd: 'apps/my-project' });
+    expect(execSync).toHaveBeenCalledWith('size-limit', { stdio: 'inherit', cwd: 'apps/my-project' });
   });
 
   it('should return success: true', async () => {
@@ -51,14 +48,12 @@ describe('runExecutor', () => {
   });
 });
 
-describe('argsFromOptions', () => {
-  it('should convert options to command-line arguments', () => {
+describe('constructCommand', () => {
+  it('construct command with --why flag', () => {
     const options: SizeLimitExecutorSchema = {
-      limit: '200 KB'
+      why: true
     };
-    const args = argsFromOptions(options);
-    expect(args).toEqual([
-      '--limit=200 KB'
-    ]);
+   const cmd = constructCommand(options);
+    expect(cmd).toEqual('size-limit --why');
   });
 });

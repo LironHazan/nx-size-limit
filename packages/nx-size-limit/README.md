@@ -83,6 +83,20 @@ Additional executor will be added to the target project.json config:
   }
 }
 ```
+####  Statoscope bundle analysis
+Set `why:true` for forwarding the '--why' flag to the size-limit CLI.
+```json
+    "size-limit": {
+      "executor": "nx-size-limit:size-limit",
+      "options": {
+        "why": true
+      }
+    }
+```
+It will produce a nice report helps to analyze the bundle
+as specified [on this section](https://github.com/ai/size-limit#analyze-with---why).
+
+You will need to install `@size-limit/esbuild-why` or `@size-limit/webpack-why` depends on which bundler you are using (default is esbuild).
 ### Run a limit check
 ```
 nx run your-project:size-limit

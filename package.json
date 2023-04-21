@@ -16,6 +16,8 @@
     "@nrwl/react": "^15.9.2",
     "@nrwl/workspace": "15.9.2",
     "@size-limit/preset-app": "^8.2.4",
+    "@size-limit/webpack": "^8.2.4",
+    "@size-limit/webpack-why": "^8.2.4",
     "@swc-node/register": "^1.4.2",
     "@swc/cli": "~0.1.55",
     "@swc/core": "^1.2.173",
