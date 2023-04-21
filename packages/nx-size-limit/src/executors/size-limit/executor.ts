@@ -8,20 +8,15 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for SizeLimit', options);
   const cwd = context.workspace.projects[context.projectName].root;
-  const cmd = ['size-limit'].concat(argsFromOptions(options)).join(' ');
-  console.log(cmd);
-  execSync(cmd, { stdio: 'inherit', cwd });
+  execSync(constructCommand(options), { stdio: 'inherit', cwd });
   return {
     success: true
   };
 }
 
-
-export function argsFromOptions(options: SizeLimitExecutorSchema): string[] {
-  const args = [];
-  for (const [k , v] of Object.entries(options)) {
-    args.push(`--${k}=${v}`);
-  }
-  return args;
+export function constructCommand(options: SizeLimitExecutorSchema): string {
+  return options.why === true ? 'size-limit --why' : 'size-limit';
 }
+
+
 
