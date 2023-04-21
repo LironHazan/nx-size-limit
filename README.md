@@ -86,11 +86,13 @@ Additional executor will be added to the target project.json config:
 ####  Statoscope bundle analysis
 Set `why:true` for forwarding the '--why' flag to the size-limit CLI.
 ```json
-    "size-limit": {
-"executor": "nx-size-limit:size-limit",
-"options": {
-"why": true
-}
+{
+  "size-limit": {
+    "executor": "nx-size-limit:size-limit",
+    "options": {
+      "why": true
+    }
+  }
 }
 ```
 It will produce a nice report helps to analyze the bundle
