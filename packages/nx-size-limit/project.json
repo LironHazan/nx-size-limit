@@ -62,9 +62,6 @@
         }
       }
     },
-    "release": {
-      "executor": "@theunderscorer/nx-semantic-release:semantic-release"
-    },
     "size-limit": {
       "executor": "nx-size-limit:size-limit"
     }
