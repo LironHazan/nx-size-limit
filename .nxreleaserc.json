@@ -1,9 +1,0 @@
-{
-  "changelog": false,
-  "npm": true,
-  "github": false,
-  "repositoryUrl": "https://github.com/LironHazan/nx-size-limit",
-  "branches": [
-    "main"
-  ]
-}
