@@ -6,6 +6,7 @@ on:
 jobs:
   release:
     name: Build + Release
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
