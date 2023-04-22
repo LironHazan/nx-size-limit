@@ -4,9 +4,10 @@ on:
   - workflow_dispatch
 
 jobs:
-  build:
-    name: Build before release
+  release:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,17 +20,6 @@ jobs:
       - name: Build
         run: npx nx run nx-size-limit:build
 
-
-  release:
-    runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Release
         uses: ./.github/actions/release
         with:
