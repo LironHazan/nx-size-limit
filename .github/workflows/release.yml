@@ -21,6 +21,7 @@ jobs:
         run: npx nx run nx-size-limit:build
 
       - name: Release
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: cd dist/packages/nx-size-limit && npm publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package : ./dist/packages/nx-size-limit/package.json
