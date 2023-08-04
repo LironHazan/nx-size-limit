@@ -13,6 +13,12 @@
   "bugs": {
     "url": "git://github.com/LironHazan/nx-size-limit/issues"
   },
+  "peerDependencies": {
+    "nx": ">=15.9.2"
+  },
+  "dependencies": {
+    "@nrwl/devkit": "15.9.2"
+  },
   "repository": {
     "directory": "packages/nx-size-limit",
     "type": "git",
