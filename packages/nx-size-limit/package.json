@@ -1,6 +1,6 @@
 {
   "name": "nx-size-limit",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
@@ -12,6 +12,12 @@
   ],
   "bugs": {
     "url": "git://github.com/LironHazan/nx-size-limit/issues"
+  },
+  "peerDependencies": {
+    "nx": ">=15.9.2"
+  },
+  "dependencies": {
+    "@nrwl/devkit": "15.9.2"
   },
   "repository": {
     "directory": "packages/nx-size-limit",
